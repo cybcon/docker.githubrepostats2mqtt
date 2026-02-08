@@ -1,0 +1,29 @@
+services:
+  githubrepostats2mqtt:
+    container_name: githubrepostats2mqtt
+    restart: "no"
+    read_only: true
+    user: 5242:5242
+    image: oitc/githubrepostats2mqtt:latest
+    environment:
+      MQTT_SERVER: test.mosquitto.org
+      MQTT_PORT: 8883
+      MQTT_TLS_enabled: true
+      MQTT_TLS_no_hostname_validation: false
+      MQTT_CACERT_FILE: /etc/ssl/certs/ca-certificates.crt
+      MQTT_USER: myMQTTUser
+      #MQTT_PASSWORD: myPass
+      MQTT_PASSWORD_FILE: /run/secrets/mqtt_password
+      MQTT_RETAIN: false
+      MQTT_TOPIC: com/github/repositories/metrics
+      REPOSITORIES: cybcon/docker.githubrepostats2mqtt cybcon/modbus-server
+      REQUESTS_CA_BUNDLE: /etc/ssl/certs/ca-certificates.crt
+      MQTT_TOPIC_REPO_EXTENSION: false
+    secrets:
+      - mqtt_password
+    tmpfs:
+      - /tmp
+
+secrets:
+  mqtt_password:
+    file: /srv/docker/githubrepostats2mqtt/secrets/mqtt_password
