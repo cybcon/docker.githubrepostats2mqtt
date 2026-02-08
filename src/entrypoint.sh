@@ -255,7 +255,7 @@ validate_input_parameters
 for repository in ${REPOSITORIES}
 do
   echo "Get statistics of: ${repository}"
-  result=$(get_dockerhub_repository_statistics ${repository})
+  result=$(get_github_repository_statistics ${repository})
   publish_result ${repository} "${result}"
 done
 
