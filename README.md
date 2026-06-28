@@ -22,20 +22,22 @@ Container image: [DockerHub](https://hub.docker.com/r/oitc/githubrepostats2mqtt)
 [![][docker-size-shield]][docker-size-link]
 
 
-# Supported tags and respective `Dockerfile` links
+## Supported tags and respective `Dockerfile` links
 
-* [`latest`, `1.0.0`](https://github.com/cybcon/docker.githubrepostats2mqtt/blob/v1.0.0/Dockerfile)
+* [`latest`, `1.1.0`](https://github.com/cybcon/docker.githubrepostats2mqtt/blob/v1.1.0/Dockerfile)
+* [`1.0.0`](https://github.com/cybcon/docker.githubrepostats2mqtt/blob/v1.0.0/Dockerfile)
 
-# Summary
+## Summary
 
 The container image is based on Alpine Linux and sends a curl request result with the [mosquitto-client](https://mosquitto.org/)
 to a MQTT server topic.
 
-# Prerequisites to run the docker container
+## Prerequisites to run the docker container
 You need an MQTT server to send the data to it.
 
-# Configuration
-## Container configuration
+## Configuration
+
+### Container configuration
 
 The container grab the configuration via environment variables.
 
@@ -54,7 +56,7 @@ The container grab the configuration via environment variables.
 | `REPOSITORIES` | A whitespace separated list of Github repositories where to collect the statistics | **MANDATORY** | |
 | `MQTT_TOPIC_REPO_EXTENSION` | Use the Github repository name as MQTT topic appendix | **OPTIONAL** | `false` |
 
-# Docker compose configuration
+## Docker compose configuration
 
 ```yaml
 services:
@@ -69,15 +71,21 @@ services:
       REPOSITORIES: cybcon/docker.githubrepostats2mqtt cybcon/modbus-server
 ```
 
-A bigger example can be found here: [`docker-compose.yaml`](./docker-compose.yaml)
+A bigger example can be found here: [`docker-compose.yaml`](https://github.com/cybcon/docker.githubrepostats2mqtt/blob/main/docker-compose.yaml)
 
-# Donate
+## Relationship to docker.mqtt2elasticsearch
+
+If you want to use [docker.mqtt2elasticsearch](https://github.com/cybcon/docker.mqtt2elasticsearch) to store the data in an Elasticsearch or Opensearch database, ou can use this mappings example file:
+
+[mqtt2elasticsearch-mappings.json](https://github.com/cybcon/docker.githubrepostats2mqtt/blob/main/examples/mqtt2elasticsearch-mappings.json)
+
+## Donate
+
 I would appreciate a small donation to support the further development of my open source projects.
 
-<a href="https://www.paypal.com/donate/?hosted_button_id=BHGJGGUS6RH44" target="_blank"><img src="https://raw.githubusercontent.com/stefan-niedermann/paypal-donate-button/master/paypal-donate-button.png" alt="Donate with PayPal" width="200px"></a>
+[![Donate with PayPal][donate-paypal-button]][donate-paypal-link]
 
-
-# License
+## License
 
 Copyright (c) 2026 Michael Oberdorf IT-Consulting
 
@@ -108,6 +116,8 @@ SOFTWARE.
 [docker-size-shield]: https://img.shields.io/docker/image-size/oitc/githubrepostats2mqtt?color=369eff&labelColor=black&style=flat-square
 [docker-stars-link]: https://hub.docker.com/r/oitc/githubrepostats2mqtt
 [docker-stars-shield]: https://img.shields.io/docker/stars/oitc/githubrepostats2mqtt?color=45cc11&labelColor=black&style=flat-square
+[donate-paypal-button]: https://raw.githubusercontent.com/cybcon/paypal-donate-button/refs/heads/master/paypal-donate-button_200x77.png
+[donate-paypal-link]: https://www.paypal.com/donate/?hosted_button_id=BHGJGGUS6RH44
 [github-action-release-link]: https://github.com/cybcon/docker.githubrepostats2mqtt/actions/workflows/release-from-label.yaml
 [github-action-release-shield]: https://img.shields.io/github/actions/workflow/status/cybcon/docker.githubrepostats2mqtt/release-from-label.yaml?label=release&labelColor=black&logo=githubactions&logoColor=white&style=flat-square
 [github-action-test-link]: https://github.com/cybcon/docker.githubrepostats2mqtt/actions/workflows/container-image-build-validation.yaml
